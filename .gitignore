@@ -1,5 +1,5 @@
 # dependencies
 /node_modules
 /package-lock.json
-# /api/services/*.json
+/api/services/*.json
 /.env
