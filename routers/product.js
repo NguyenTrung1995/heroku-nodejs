@@ -30,21 +30,30 @@ router.post("/product/create", auth, async (req, res) => {
         const { category, type } = req.body;
         const productSchema = {
             ...req.body,
-            code: `${category}_${type}`,
+            code: `${category}-${type}-${Math.floor(new Date().getTime() / 1000)}`,
         };
         const product = new Product(productSchema);
         await product.save();
-        res.status(201).send(req.body);
+        res.status(201).send(respSucceed(req.body));
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
+router.get("/products/public", async (req, res) => {
+    try {
+        Product.find({}).exec((err, products) => {
+            res.status(200).send(respSucceed(products));
+        });
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
 
 router.get("/products", auth, async (req, res) => {
     try {
         Product.find({}).exec((err, products) => {
-            res.status(201).send(respSucceed(products));
+            res.status(200).send(respSucceed(products));
         });
     } catch (error) {
         res.status(400).send(error);

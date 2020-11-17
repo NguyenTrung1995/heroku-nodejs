@@ -8,6 +8,7 @@ const userRouter = require('./routers/user');
 const productRouter = require('./routers/product');
 const categoryRouter = require('./routers/category');
 const typeRouter = require('./routers/type');
+const orderRouter = require('./routers/order');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(userRouter);
 app.use(productRouter);
 app.use(categoryRouter);
 app.use(typeRouter);
+app.use(orderRouter);
 
 const port = process.env.PORT || 4000;
 

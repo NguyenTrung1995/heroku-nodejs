@@ -27,5 +27,4 @@ router.get("/types/:categoryCode", auth, async (req, res) => {
     }
 });
 
-
 module.exports = router;
